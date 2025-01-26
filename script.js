@@ -74,12 +74,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Handle Sending Messages
   messageForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent the form from submitting and reloading the page
     const message = messageInput.value;
 
     if (message) {
       addMessage(username, message);
-      messageInput.value = "";
+      messageInput.value = ""; // Clear the input after sending the message
     }
   });
 
@@ -120,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
 
 
 
