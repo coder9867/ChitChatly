@@ -8,8 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutButton = document.getElementById("logoutButton");
   const adminButton = document.getElementById("adminButton");
   const loginButton = document.getElementById("loginButton");
-  const togglePasswordButton = document.getElementById("togglePassword");
-  const passwordInput = document.getElementById("password");
 
   let username = "";
   const adminPassword = "ni01xo00";
@@ -37,9 +35,12 @@ document.addEventListener("DOMContentLoaded", () => {
     alert(`Welcome, ${username}!`);
     signupForm.parentElement.classList.add("hidden");
     chat.classList.remove("hidden");
+    adminButton.classList.remove("hidden"); // Show Admin Button after sign up
   });
 
   // Handle Showing Password
+  const togglePasswordButton = document.getElementById("togglePassword");
+  const passwordInput = document.getElementById("password");
   togglePasswordButton.addEventListener("click", () => {
     const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
     passwordInput.setAttribute("type", type);
@@ -67,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
       alert(`Welcome back, ${username}!`);
       loginForm.parentElement.classList.add("hidden");
       chat.classList.remove("hidden");
+      adminButton.classList.remove("hidden"); // Show Admin Button after login
     } else {
       alert("Invalid username or password.");
     }
@@ -74,12 +76,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Handle Sending Messages
   messageForm.addEventListener("submit", (e) => {
-    e.preventDefault(); // Prevent the form from submitting and reloading the page
+    e.preventDefault();
     const message = messageInput.value;
 
     if (message) {
       addMessage(username, message);
-      messageInput.value = ""; // Clear the input after sending the message
+      messageInput.value = "";
     }
   });
 
@@ -95,9 +97,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Handle Logout
   logoutButton.addEventListener("click", () => {
     chat.classList.add("hidden");
-    signupForm.parentElement.classList.remove("hidden");
+    document.getElementById("signupForm").parentElement.classList.remove("hidden");
     document.getElementById("signupForm").reset();
     messagesDiv.innerHTML = "";
+    adminButton.classList.add("hidden");
   });
 
   // Handle Admin Controls
@@ -120,6 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
 
 
 
