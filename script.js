@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutButton = document.getElementById("logoutButton");
   const adminButton = document.getElementById("adminButton");
   const loginButton = document.getElementById("loginButton");
+  const togglePasswordButton = document.getElementById("togglePassword");
+  const passwordInput = document.getElementById("password");
 
   let username = "";
   const adminPassword = "ni01xo00";
@@ -38,8 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Handle Showing Password
-  const togglePasswordButton = document.getElementById("togglePassword");
-  const passwordInput = document.getElementById("password");
   togglePasswordButton.addEventListener("click", () => {
     const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
     passwordInput.setAttribute("type", type);
@@ -120,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
 
 
 
