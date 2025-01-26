@@ -12,9 +12,7 @@
     <div class="card">
       <h1 class="title">Welcome to ChitChatly</h1>
 
-      <!-- Login Button -->
-      <button id="loginButton">Login</button>
-
+      <!-- Sign-Up Form -->
       <form id="signupForm">
         <label for="realName">Real Name:</label>
         <input type="text" id="realName" name="realName" placeholder="Enter your real name" required>
@@ -26,13 +24,30 @@
         <input type="text" id="username" name="username" placeholder="Choose a username" required>
 
         <button type="submit">Sign Up</button>
-        
-        <!-- Toggle Password Button -->
-        <button type="button" id="togglePassword">Show Password</button>
+      </form>
+
+      <!-- Login Button -->
+      <button id="loginButton">Already have an account? Login</button>
+    </div>
+  </div>
+
+  <!-- Login Form (Initially Hidden) -->
+  <div id="loginPage" class="hidden">
+    <div class="card">
+      <h1 class="title">Login</h1>
+      <form id="loginForm">
+        <label for="loginUsername">Username:</label>
+        <input type="text" id="loginUsername" name="loginUsername" placeholder="Enter your username" required>
+
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" name="loginPassword" placeholder="Enter your password" required>
+
+        <button type="submit">Login</button>
       </form>
     </div>
   </div>
 
+  <!-- Chat Section (Initially Hidden) -->
   <div id="chat" class="hidden">
     <div class="chat-header">
       <h2>ChitChatly Live Chat</h2>
@@ -43,7 +58,11 @@
       <input type="text" id="messageInput" placeholder="Type a message..." required>
       <button type="submit">Send</button>
     </form>
+
+    <!-- Admin Button -->
+    <button id="adminButton">Admin</button>
   </div>
 </body>
 </html>
+
 
