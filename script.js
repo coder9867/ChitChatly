@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const signupForm = document.getElementById("signupForm");
+  const loginForm = document.getElementById("loginForm");
   const chat = document.getElementById("chat");
   const messagesDiv = document.getElementById("messages");
   const messageForm = document.getElementById("messageForm");
@@ -12,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const adminPassword = "ni01xo00";
   let users = [];
 
-  
+  // Handle Sign-Up Form Submission
   signupForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const realName = document.getElementById("realName").value;
@@ -20,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     username = document.getElementById("username").value;
 
     if (realName && password && username) {
-      users.push({ realName, username });
+      users.push({ realName, username, password });
       alert(`Welcome, ${username}!`);
       signupForm.parentElement.classList.add("hidden");
       chat.classList.remove("hidden");
@@ -29,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  
+  // Handle Showing Password
   const togglePasswordButton = document.getElementById("togglePassword");
   const passwordInput = document.getElementById("password");
   togglePasswordButton.addEventListener("click", () => {
@@ -38,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     togglePasswordButton.textContent = type === "password" ? "Show Password" : "Hide Password";
   });
 
-
+  // Handle Login Button
   loginButton.addEventListener("click", () => {
     const loginPage = document.getElementById("loginPage");
     const signupPage = document.getElementById("signupPage");
@@ -46,7 +47,25 @@ document.addEventListener("DOMContentLoaded", () => {
     loginPage.classList.remove("hidden");
   });
 
-  
+  // Handle Login Form Submission
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const loginUsername = document.getElementById("loginUsername").value;
+    const loginPassword = document.getElementById("loginPassword").value;
+
+    const user = users.find(u => u.username === loginUsername && u.password === loginPassword);
+
+    if (user) {
+      username = user.username;
+      alert(`Welcome back, ${username}!`);
+      loginForm.parentElement.classList.add("hidden");
+      chat.classList.remove("hidden");
+    } else {
+      alert("Invalid username or password.");
+    }
+  });
+
+  // Handle Sending Messages
   messageForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const message = messageInput.value;
@@ -57,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-
+  // Add Message to Chat
   function addMessage(sender, message) {
     const messageElement = document.createElement("div");
     messageElement.classList.add("message");
@@ -66,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
   }
 
- 
+  // Handle Logout
   logoutButton.addEventListener("click", () => {
     chat.classList.add("hidden");
     signupForm.parentElement.classList.remove("hidden");
@@ -74,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
     messagesDiv.innerHTML = "";
   });
 
- 
+  // Handle Admin Controls
   adminButton.addEventListener("click", () => {
     const enteredPassword = prompt("Enter admin password:");
     if (enteredPassword === adminPassword) {
@@ -94,4 +113,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
 
