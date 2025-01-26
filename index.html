@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChitChatly - Sign Up</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1 class="title">Welcome to ChitChatly</h1>
+      <form id="signupForm">
+        <label for="realName">Real Name:</label>
+        <input type="text" id="realName" name="realName" placeholder="Enter your real name" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Choose a username" required>
+
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="chat" class="hidden">
+    <div class="chat-header">
+      <h2>ChitChatly Live Chat</h2>
+      <button id="logoutButton">Logout</button>
+    </div>
+    <div id="messages" class="chat-messages"></div>
+    <form id="messageForm">
+      <input type="text" id="messageInput" placeholder="Type a message..." required>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</body>
+</html>
