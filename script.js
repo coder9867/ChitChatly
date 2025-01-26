@@ -20,14 +20,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const password = document.getElementById("password").value;
     username = document.getElementById("username").value;
 
-    if (realName && password && username) {
-      users.push({ realName, username, password });
-      alert(`Welcome, ${username}!`);
-      signupForm.parentElement.classList.add("hidden");
-      chat.classList.remove("hidden");
-    } else {
+    if (!realName || !password || !username) {
       alert("Please fill out all fields.");
+      return;
     }
+
+    const isUsernameTaken = users.some(user => user.username === username);
+    if (isUsernameTaken) {
+      alert("This username is already taken. Please choose a different one.");
+      return;
+    }
+
+    users.push({ realName, username, password });
+    alert(`Welcome, ${username}!`);
+    signupForm.parentElement.classList.add("hidden");
+    chat.classList.remove("hidden");
   });
 
   // Handle Showing Password
@@ -113,5 +120,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
 
 
