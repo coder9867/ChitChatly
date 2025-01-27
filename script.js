@@ -1,61 +1,55 @@
 document.addEventListener("DOMContentLoaded", () => {
   const signupForm = document.getElementById("signupForm");
   const loginForm = document.getElementById("loginForm");
-  const chat = document.getElementById("chat");
-  const messagesDiv = document.getElementById("messages");
-  const messageForm = document.getElementById("messageForm");
-  const messageInput = document.getElementById("messageInput");
+  const loginButton = document.getElementById("loginButton");
+  const chatPage = document.getElementById("chatPage");
+  const signupPage = document.getElementById("signupPage");
+  const loginPage = document.getElementById("loginPage");
   const logoutButton = document.getElementById("logoutButton");
   const adminButton = document.getElementById("adminButton");
-  const loginButton = document.getElementById("loginButton");
-
-  let username = "";
-  const adminPassword = "ni01xo00";
-  let users = [];
-
-  // Handle Sign-Up Form Submission
-  signupForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const realName = document.getElementById("realName").value;
-    const password = document.getElementById("password").value;
-    username = document.getElementById("username").value;
-
-    if (!realName || !password || !username) {
-      alert("Please fill out all fields.");
-      return;
-    }
-
-    const isUsernameTaken = users.some(user => user.username === username);
-    if (isUsernameTaken) {
-      alert("This username is already taken. Please choose a different one.");
-      return;
-    }
-
-    users.push({ realName, username, password });
-    alert(`Welcome, ${username}!`);
-    signupForm.parentElement.classList.add("hidden");
-    chat.classList.remove("hidden");
-    adminButton.classList.remove("hidden"); // Show Admin Button after sign up
-  });
-
-  // Handle Showing Password
+  const messageForm = document.getElementById("messageForm");
+  const messageInput = document.getElementById("messageInput");
+  const messagesDiv = document.getElementById("messages");
   const togglePasswordButton = document.getElementById("togglePassword");
   const passwordInput = document.getElementById("password");
+
+  const adminPassword = "ni01xo00";
+  let users = [];
+  let username = "";
+
+  // Show/hide password
   togglePasswordButton.addEventListener("click", () => {
-    const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
-    passwordInput.setAttribute("type", type);
+    const type = passwordInput.type === "password" ? "text" : "password";
+    passwordInput.type = type;
     togglePasswordButton.textContent = type === "password" ? "Show Password" : "Hide Password";
   });
 
-  // Handle Login Button
+  // Navigate to login page
   loginButton.addEventListener("click", () => {
-    const loginPage = document.getElementById("loginPage");
-    const signupPage = document.getElementById("signupPage");
     signupPage.classList.add("hidden");
     loginPage.classList.remove("hidden");
   });
 
-  // Handle Login Form Submission
+  // Handle signup form submission
+  signupForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const realName = document.getElementById("realName").value;
+    const newUsername = document.getElementById("username").value;
+    const newPassword = document.getElementById("password").value;
+
+    if (users.some(user => user.username === newUsername)) {
+      alert("This username is already taken. Please choose a different one.");
+      return;
+    }
+
+    users.push({ realName, username: newUsername, password: newPassword });
+    username = newUsername;
+    alert(`Welcome, ${username}!`);
+    signupPage.classList.add("hidden");
+    chatPage.classList.remove("hidden");
+  });
+
+  // Handle login form submission
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const loginUsername = document.getElementById("loginUsername").value;
@@ -66,15 +60,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (user) {
       username = user.username;
       alert(`Welcome back, ${username}!`);
-      loginForm.parentElement.classList.add("hidden");
-      chat.classList.remove("hidden");
-      adminButton.classList.remove("hidden"); // Show Admin Button after login
+      loginPage.classList.add("hidden");
+      chatPage.classList.remove("hidden");
     } else {
       alert("Invalid username or password.");
     }
   });
 
-  // Handle Sending Messages
+  // Handle message submission
   messageForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const message = messageInput.value;
@@ -85,25 +78,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Add Message to Chat
+  // Add message to chat
   function addMessage(sender, message) {
     const messageElement = document.createElement("div");
-    messageElement.classList.add("message");
     messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
     messagesDiv.appendChild(messageElement);
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
   }
 
-  // Handle Logout
+  // Handle logout
   logoutButton.addEventListener("click", () => {
-    chat.classList.add("hidden");
-    document.getElementById("signupForm").parentElement.classList.remove("hidden");
+    chatPage.classList.add("hidden");
+    signupPage.classList.remove("hidden");
     document.getElementById("signupForm").reset();
+    document.getElementById("loginForm").reset();
     messagesDiv.innerHTML = "";
-    adminButton.classList.add("hidden");
   });
 
-  // Handle Admin Controls
+  // Admin button functionality
   adminButton.addEventListener("click", () => {
     const enteredPassword = prompt("Enter admin password:");
     if (enteredPassword === adminPassword) {
@@ -123,6 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
 
 
 
