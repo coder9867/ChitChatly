@@ -3,67 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ChitChatly - Sign Up</title>
+  <title>ChitChatly</title>
   <link rel="stylesheet" href="styles.css">
   <script defer src="script.js"></script>
 </head>
 <body>
-  <div class="container">
-    <div class="card">
-      <h1 class="title">Welcome to ChitChatly</h1>
+  <!-- Signup Page -->
+  <div id="signupPage" class="page">
+    <h1>Welcome to ChitChatly</h1>
+    <form id="signupForm">
+      <label for="realName">Real Name:</label>
+      <input type="text" id="realName" placeholder="Enter your real name" required>
 
-      <!-- Sign-Up Form -->
-      <form id="signupForm">
-        <label for="realName">Real Name:</label>
-        <input type="text" id="realName" name="realName" placeholder="Enter your real name" required>
+      <label for="username">Username:</label>
+      <input type="text" id="username" placeholder="Enter your username" required>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" placeholder="Enter your password" required>
+      <button id="togglePassword" type="button">Show Password</button>
 
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" placeholder="Choose a username" required>
-
-        <button type="submit">Sign Up</button>
-      </form>
-
-      <!-- Login Button -->
-      <button id="loginButton">Already have an account? Login</button>
-    </div>
+      <button type="submit">Sign Up</button>
+      <button id="loginButton" type="button">Login</button>
+    </form>
   </div>
 
-  <!-- Login Form (Initially Hidden) -->
-  <div id="loginPage" class="hidden">
-    <div class="card">
-      <h1 class="title">Login</h1>
-      <form id="loginForm">
-        <label for="loginUsername">Username:</label>
-        <input type="text" id="loginUsername" name="loginUsername" placeholder="Enter your username" required>
+  <!-- Login Page -->
+  <div id="loginPage" class="page hidden">
+    <h1>Login to ChitChatly</h1>
+    <form id="loginForm">
+      <label for="loginUsername">Username:</label>
+      <input type="text" id="loginUsername" placeholder="Enter your username" required>
 
-        <label for="loginPassword">Password:</label>
-        <input type="password" id="loginPassword" name="loginPassword" placeholder="Enter your password" required>
+      <label for="loginPassword">Password:</label>
+      <input type="password" id="loginPassword" placeholder="Enter your password" required>
 
-        <button type="submit">Login</button>
-      </form>
-    </div>
+      <button type="submit">Login</button>
+    </form>
   </div>
 
-  <!-- Chat Section (Initially Hidden) -->
-  <div id="chat" class="hidden">
+  <!-- Chat Page -->
+  <div id="chatPage" class="page hidden">
     <div class="chat-header">
       <h2>ChitChatly Live Chat</h2>
       <button id="logoutButton">Logout</button>
+      <button id="adminButton">Admin</button>
     </div>
     <div id="messages" class="chat-messages"></div>
     <form id="messageForm">
-      <input type="text" id="messageInput" placeholder="Type a message..." required>
+      <input type="text" id="messageInput" placeholder="Type your message..." required>
       <button type="submit">Send</button>
     </form>
-
-    <!-- Admin Button -->
-    <button id="adminButton" class="hidden">Admin</button>
   </div>
 </body>
 </html>
+
 
 
 
